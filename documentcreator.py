@@ -138,26 +138,26 @@ def getdefin(word,doc):
             except:
                 pass # doing nothing on exception
 
-        
+#driver to make the txt files
 def maketxt():
 
     
-    counter = 200
+    
     #make txt file for every word
-    for word in getwords()[3000:]:
-        print(counter)
-
+    for word in getwords():
+        
+        #if txt file already has data, then skip and move on to next word
         doc = open(word +".txt", 'r',encoding='utf-8')
         file = doc.read()
         if("--meaning" in file):
             print("meaning in doc")
             doc.close()
             continue
-
         doc.close()
         
+        #if no data in file, add relevant data to file
         doc = open(word +".txt", 'w',encoding='utf-8')
-        print("WAWAWAWAWAWA")
+        
 
         doc.write(word+'\n')
         getdefin(word, doc)
