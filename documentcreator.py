@@ -162,7 +162,7 @@ def maketxt():
         doc.write(word+'\n')
         getdefin(word, doc)
         doc.close()
-        counter = counter + 1
+        
     
 
        
