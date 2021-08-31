@@ -10,22 +10,18 @@ save_path = 'C:/Users/Milan Trivedi/Desktop/Python/Research/Dataset1Synonymswitc
 
 def createsentence(word):
 	word = word[0]
-	print(word)
+	
 
 	#open file for specific word
 	doc = open(word + '.txt', 'r',encoding='utf-8')
 	file = doc.read()
-
-
-	# if(not("--meaning" in file)):
- #            print("no meanings")
- #            doc.close()
- #            return
-
 	lines = file.split("\n")
 	
 	
+	#create empty list of synonyms
 	synonyms = []
+	
+	#initialize condition
 	condition = False
 
 	
@@ -40,12 +36,14 @@ def createsentence(word):
 
 
 		if(condition):
+			#format the line so it is only the synonym we need 
 			if(len(line.split('    '))>1):
 				synonym = line.split('    ')[0]
 				synonyms.append(synonym)
 	print(synonyms)
 
 
+	#find file 
 	file_name = word + ".txt"
 
 	completeName = os.path.join(save_path, file_name)
@@ -53,7 +51,7 @@ def createsentence(word):
 
 	file.write(word + '\n')
 
-	#go line by line and add relevant information to new txt file
+	#go line by line and add relevant information (meaning and example sentences) to new txt file
 
 	
 	condition2 = False
@@ -77,15 +75,11 @@ def createsentence(word):
 
 		if(condition2):
 			if(line != '--sentences'):
+				#create sentence with synonym swapped with word and add it to file
 				for synonym in synonyms:
 					file.write(line + '\n')
 					file.write(sentenceswap(word,synonym,line) + '\n')
 					
-	 				
-				
-
-				
-
 		if(condition3):
 			
 			file.write(line + '\n')
@@ -100,7 +94,7 @@ def createsentence(word):
 #this method will switch the synonym and the word	
 def sentenceswap(word,synonym,sentence):
 
-
+	#get all relevant data regarding the word
 	wordlist = get_word_forms(word)
 
 
